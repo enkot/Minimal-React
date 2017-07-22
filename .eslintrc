@@ -1,0 +1,7 @@
+{
+    "plugins": ["import"],
+    "parser": "babel-eslint",
+    "globals": {
+    	"document": true
+  	}
+}
