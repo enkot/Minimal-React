@@ -1,0 +1,38 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: Arial, sans-serif;
+	color: #242b48;
+}
+p {
+	font-size: 14px;
+}
+.app-container {
+	max-width: 500px;
+	margin: 100px auto;
+	text-align: center;
+}
+.app-container input {
+	width: 100%;
+	padding: 10px 15px;
+	font-size: 16px;
+	border: 2px solid #eff1f5;
+	border-radius: 8px;
+	margin: 20px 0;
+	outline: none;
+}
+.todo-item {
+	display: block;
+	padding: 30px 24px;
+	text-align: left;
+	text-decoration: none;
+	background-color: #dff7f7;
+	color: #2d9598;
+	border-radius: 8px;
+	margin-bottom: 5px;
+}
+.todo-item:hover {
+	background-color: #fee6f3;
+	color: #ee0280;
+}
