@@ -5,13 +5,12 @@ body {
 	font-family: Arial, sans-serif;
 	color: #242b48;
 }
-p {
+p, span {
 	font-size: 14px;
 }
 .app-container {
-	max-width: 500px;
-	margin: 100px auto;
 	text-align: center;
+	margin: 100px 0;
 }
 .app-container input {
 	width: 100%;
@@ -22,17 +21,65 @@ p {
 	margin: 20px 0;
 	outline: none;
 }
-.todo-item {
+.form-container {
+	max-width: 500px;
+	margin: 0 auto;
+}
+.card {
+	width: 31.33333%;
+	float: left;
+	margin: 0 1%;
+	padding: 15px;
+	border-radius: 8px;
+}
+.project-item {
 	display: block;
-	padding: 30px 24px;
+	position: relative;
+	padding: 20px;
 	text-align: left;
 	text-decoration: none;
-	background-color: #dff7f7;
-	color: #2d9598;
+	background-color: #fff;
 	border-radius: 8px;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
+	box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
-.todo-item:hover {
+.project-item:hover .remove {
+	display: block;
+}
+.project-item .remove {
+	display: none;
+	position: absolute;
+	height: 16px;
+	width: 16px;
+	border-radius: 8px;
+	right: 15px;
+	top: 22px;
+	line-height: 14px;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+	background-color: #fd5b71;
+}
+.project-list {
+	max-width: 1000px;
+	margin: 20px auto;
+}
+.project-list h5 {
+	text-align: left;
+	position: relative;
+}
+.project-list h5 span {
+	position: absolute;
+	right: 0;
+	font-weight: normal;
+	color: rgba(0,0,0,.4);
+}
+.todo-list {
+	background-color: #fbf8e7;
+}
+.doing-list {
 	background-color: #fee6f3;
-	color: #ee0280;
+}
+.done-list {
+	background-color: #dff7f7;
 }
