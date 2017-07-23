@@ -1,6 +1,8 @@
 # Minimal-React
 Minimal React.js starter kit for experiments.
 
+[![Build Status](https://travis-ci.org/BatenkovT/Minimal-React.svg?branch=master)](https://travis-ci.org/BatenkovT/Minimal-React)
+
 It has bare minimum to start development:
 * React
 * Webpack
