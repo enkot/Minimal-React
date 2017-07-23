@@ -22416,9 +22416,9 @@ var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Todo = __webpack_require__(185);
+var _Project = __webpack_require__(185);
 
-var _Todo2 = _interopRequireDefault(_Todo);
+var _Project2 = _interopRequireDefault(_Project);
 
 __webpack_require__(189);
 
@@ -22431,9 +22431,9 @@ var App = function App() {
 		_react2.default.createElement(
 			'h1',
 			null,
-			'Minimal React'
+			'Trololo'
 		),
-		_react2.default.createElement(_Todo2.default, null)
+		_react2.default.createElement(_Project2.default, null)
 	);
 };
 
@@ -22456,17 +22456,17 @@ var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _TodoTitle = __webpack_require__(186);
+var _ProjectTitle = __webpack_require__(186);
 
-var _TodoTitle2 = _interopRequireDefault(_TodoTitle);
+var _ProjectTitle2 = _interopRequireDefault(_ProjectTitle);
 
-var _TodoForm = __webpack_require__(187);
+var _ProjectForm = __webpack_require__(187);
 
-var _TodoForm2 = _interopRequireDefault(_TodoForm);
+var _ProjectForm2 = _interopRequireDefault(_ProjectForm);
 
-var _TodoList = __webpack_require__(188);
+var _ProjectList = __webpack_require__(188);
 
-var _TodoList2 = _interopRequireDefault(_TodoList);
+var _ProjectList2 = _interopRequireDefault(_ProjectList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22478,18 +22478,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var data = {
 	id: 0,
-	todos: []
+	todos: [],
+	status: ['todo', 'doing', 'done']
 };
 
-var Todo = function (_React$Component) {
-	_inherits(Todo, _React$Component);
+var Project = function (_React$Component) {
+	_inherits(Project, _React$Component);
 
-	function Todo(props) {
-		_classCallCheck(this, Todo);
+	function Project(props) {
+		_classCallCheck(this, Project);
 
-		var _this = _possibleConstructorReturn(this, (Todo.__proto__ || Object.getPrototypeOf(Todo)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (Project.__proto__ || Object.getPrototypeOf(Project)).call(this, props));
 
 		_this.addTodo = _this.addTodo.bind(_this);
+		_this.handleMove = _this.handleMove.bind(_this);
 		_this.handleRemove = _this.handleRemove.bind(_this);
 
 		_this.state = {
@@ -22498,7 +22500,7 @@ var Todo = function (_React$Component) {
 		return _this;
 	}
 
-	_createClass(Todo, [{
+	_createClass(Project, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
 			this.setState({
@@ -22510,11 +22512,25 @@ var Todo = function (_React$Component) {
 		value: function addTodo(val) {
 			if (!val.replace(/\s/g, '').length) return;
 
-			data.todos.push({ text: val, id: data.id++ });
+			data.todos.push({ id: data.id++, text: val, status: data.status[0] });
 
 			this.setState({
 				todos: data.todos
 			});
+		}
+	}, {
+		key: 'handleMove',
+		value: function handleMove(id, status) {
+			var modified = this.state.todos.map(function (todo) {
+				if (todo.id === id) {
+					var statusNum = data.status.indexOf(todo.status);
+					todo.status = statusNum === 2 ? data.status[0] : data.status[statusNum + 1];
+				}
+
+				return todo;
+			});
+
+			this.setState({ todos: modified });
 		}
 	}, {
 		key: 'handleRemove',
@@ -22535,20 +22551,21 @@ var Todo = function (_React$Component) {
 			return _react2.default.createElement(
 				'div',
 				null,
-				_react2.default.createElement(_TodoTitle2.default, { todoCount: this.state.todos.length }),
-				_react2.default.createElement(_TodoForm2.default, { addTodo: this.addTodo }),
-				_react2.default.createElement(_TodoList2.default, {
+				_react2.default.createElement(_ProjectTitle2.default, { todoCount: this.state.todos.length }),
+				_react2.default.createElement(_ProjectForm2.default, { add: this.addTodo }),
+				_react2.default.createElement(_ProjectList2.default, {
 					todos: this.state.todos,
+					move: this.handleMove,
 					remove: this.handleRemove
 				})
 			);
 		}
 	}]);
 
-	return Todo;
+	return Project;
 }(_react2.default.Component);
 
-exports.default = Todo;
+exports.default = Project;
 
 /***/ }),
 /* 186 */
@@ -22567,7 +22584,7 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TodoTitle = function TodoTitle(_ref) {
+var ProjectTitle = function ProjectTitle(_ref) {
 	var todoCount = _ref.todoCount;
 
 	return _react2.default.createElement(
@@ -22576,19 +22593,19 @@ var TodoTitle = function TodoTitle(_ref) {
 		_react2.default.createElement(
 			'h5',
 			null,
-			'YOU HAVE ',
+			'There are ',
 			todoCount,
-			' TODOS'
+			' tasks on boards'
 		),
 		_react2.default.createElement(
 			'p',
 			null,
-			'Type some text and press Enter. Click on todo to remove it'
+			'Type some text and press Enter. Click on task to change board'
 		)
 	);
 };
 
-exports.default = TodoTitle;
+exports.default = ProjectTitle;
 
 /***/ }),
 /* 187 */
@@ -22607,25 +22624,30 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TodoForm = function TodoForm(_ref) {
-    var addTodo = _ref.addTodo;
+var ProjectForm = function ProjectForm(_ref) {
+    var add = _ref.add;
 
     var input = void 0;
+    var addTodo = function addTodo(e) {
+        e.preventDefault();
+        add(input.value);
+        input.value = '';
+    };
 
     return _react2.default.createElement(
-        'form',
-        { onSubmit: function onSubmit(e) {
-                e.preventDefault();
-                addTodo(input.value);
-                input.value = '';
-            } },
-        _react2.default.createElement('input', { className: 'todo-form', placeholder: 'My new todo...', ref: function ref(node) {
-                return input = node;
-            } })
+        'div',
+        { className: 'form-container' },
+        _react2.default.createElement(
+            'form',
+            { onSubmit: addTodo },
+            _react2.default.createElement('input', { className: 'todo-form', placeholder: 'My new task...', ref: function ref(node) {
+                    return input = node;
+                } })
+        )
     );
 };
 
-exports.default = TodoForm;
+exports.default = ProjectForm;
 
 /***/ }),
 /* 188 */
@@ -22644,37 +22666,102 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Todo = function Todo(_ref) {
+var ProjectItem = function ProjectItem(_ref) {
     var todo = _ref.todo,
+        move = _ref.move,
         remove = _ref.remove;
 
-    var removeTodo = function removeTodo() {
-        return remove(todo.id);
+    var moveTodo = function moveTodo() {
+        return move(todo.id, todo.status);
+    };
+    var removeTodo = function removeTodo(e) {
+        e.stopPropagation();
+        remove(todo.id);
     };
 
     return _react2.default.createElement(
-        "a",
-        { href: "#", className: "todo-item", onClick: removeTodo },
-        todo.text
+        "div",
+        { className: "project-item", onClick: moveTodo },
+        todo.text,
+        _react2.default.createElement(
+            "span",
+            { className: "remove", onClick: removeTodo },
+            "-"
+        )
     );
 };
 
-var TodoList = function TodoList(_ref2) {
+var ProjectList = function ProjectList(_ref2) {
     var todos = _ref2.todos,
+        move = _ref2.move,
         remove = _ref2.remove;
 
-    var todoNode = todos.map(function (todo) {
-        return _react2.default.createElement(Todo, { todo: todo, key: todo.id, remove: remove });
-    });
+    var todoItem = function todoItem(todo) {
+        return _react2.default.createElement(ProjectItem, { todo: todo, key: todo.id, move: move, remove: remove });
+    };
+
+    var todoList = todos.filter(function (todo) {
+        return todo.status === 'todo';
+    }).map(todoItem);
+    var doingList = todos.filter(function (todo) {
+        return todo.status === 'doing';
+    }).map(todoItem);
+    var doneList = todos.filter(function (todo) {
+        return todo.status === 'done';
+    }).map(todoItem);
 
     return _react2.default.createElement(
         "div",
-        { className: "todo-list" },
-        todoNode
+        { className: "project-list" },
+        _react2.default.createElement(
+            "div",
+            { className: "card todo-list" },
+            _react2.default.createElement(
+                "h5",
+                null,
+                "TODO ",
+                _react2.default.createElement(
+                    "span",
+                    null,
+                    todoList.length
+                )
+            ),
+            todoList
+        ),
+        _react2.default.createElement(
+            "div",
+            { className: "card doing-list" },
+            _react2.default.createElement(
+                "h5",
+                null,
+                "DOING ",
+                _react2.default.createElement(
+                    "span",
+                    null,
+                    doingList.length
+                )
+            ),
+            doingList
+        ),
+        _react2.default.createElement(
+            "div",
+            { className: "card done-list" },
+            _react2.default.createElement(
+                "h5",
+                null,
+                "DONE:) ",
+                _react2.default.createElement(
+                    "span",
+                    null,
+                    doneList.length
+                )
+            ),
+            doneList
+        )
     );
 };
 
-exports.default = TodoList;
+exports.default = ProjectList;
 
 /***/ }),
 /* 189 */
@@ -22716,7 +22803,7 @@ exports = module.exports = __webpack_require__(191)(undefined);
 
 
 // module
-exports.push([module.i, "* {\n\tbox-sizing: border-box;\n}\nbody {\n\tfont-family: Arial, sans-serif;\n\tcolor: #242b48;\n}\np {\n\tfont-size: 14px;\n}\n.app-container {\n\tmax-width: 500px;\n\tmargin: 100px auto;\n\ttext-align: center;\n}\n.app-container input {\n\twidth: 100%;\n\tpadding: 10px 15px;\n\tfont-size: 16px;\n\tborder: 2px solid #eff1f5;\n\tborder-radius: 8px;\n\tmargin: 20px 0;\n\toutline: none;\n}\n.todo-item {\n\tdisplay: block;\n\tpadding: 30px 24px;\n\ttext-align: left;\n\ttext-decoration: none;\n\tbackground-color: #dff7f7;\n\tcolor: #2d9598;\n\tborder-radius: 8px;\n\tmargin-bottom: 5px;\n}\n.todo-item:hover {\n\tbackground-color: #fee6f3;\n\tcolor: #ee0280;\n}", ""]);
+exports.push([module.i, "* {\n\tbox-sizing: border-box;\n}\nbody {\n\tfont-family: Arial, sans-serif;\n\tcolor: #242b48;\n}\np, span {\n\tfont-size: 14px;\n}\n.app-container {\n\ttext-align: center;\n\tmargin: 100px 0;\n}\n.app-container input {\n\twidth: 100%;\n\tpadding: 10px 15px;\n\tfont-size: 16px;\n\tborder: 2px solid #eff1f5;\n\tborder-radius: 8px;\n\tmargin: 20px 0;\n\toutline: none;\n}\n.form-container {\n\tmax-width: 500px;\n\tmargin: 0 auto;\n}\n.card {\n\twidth: 31.33333%;\n\tfloat: left;\n\tmargin: 0 1%;\n\tpadding: 15px;\n\tborder-radius: 8px;\n}\n.project-item {\n\tdisplay: block;\n\tposition: relative;\n\tpadding: 20px;\n\ttext-align: left;\n\ttext-decoration: none;\n\tbackground-color: #fff;\n\tborder-radius: 8px;\n\tmargin-bottom: 10px;\n\tbox-shadow: 0 1px 2px rgba(0,0,0,.05);\n}\n.project-item:hover .remove {\n\tdisplay: block;\n}\n.project-item .remove {\n\tdisplay: none;\n\tposition: absolute;\n\theight: 16px;\n\twidth: 16px;\n\tborder-radius: 8px;\n\tright: 15px;\n\ttop: 22px;\n\tline-height: 14px;\n\ttext-align: center;\n\tcolor: #fff;\n\tcursor: pointer;\n\tbackground-color: #fd5b71;\n}\n.project-list {\n\tmax-width: 1000px;\n\tmargin: 20px auto;\n}\n.project-list h5 {\n\ttext-align: left;\n\tposition: relative;\n}\n.project-list h5 span {\n\tposition: absolute;\n\tright: 0;\n\tfont-weight: normal;\n\tcolor: rgba(0,0,0,.4);\n}\n.todo-list {\n\tbackground-color: #fbf8e7;\n}\n.doing-list {\n\tbackground-color: #fee6f3;\n}\n.done-list {\n\tbackground-color: #dff7f7;\n}", ""]);
 
 // exports
 
