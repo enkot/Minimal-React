@@ -26,6 +26,6 @@ Build files and start local server in watch mode:
 ```js
 yarn start // or 'npm start'
 ```
-Open the web browser to `http://localhost:8080/`
+Open the web browser to `http://localhost:8080/` and you will see simple project management app (like Trello cards): 
 
 ![alt text](https://lh3.googleusercontent.com/2nm_dl5KWg-GcIXCSdbYLZptONreLbRRjmj81XZSt2W1C1a6ed3oFkTLaD9rqzIitqs-rzX7dmywtkQ=w2880-h1652-rw)
