@@ -2,12 +2,16 @@ import React from 'react';
 import ProjectTitle from './ProjectTitle.jsx';
 import ProjectForm from './ProjectForm.jsx';
 import ProjectList from './ProjectList.jsx';
+import store from './../store';
 
-const data = {
-    id: 0,
-    todos: [],
-    status: ['todo', 'doing', 'done']
-};
+import sample_tasks from './../../data/sample';
+sample_tasks.forEach(task => {
+    store.add({
+        name: task.name,
+        desc: task.desc, 
+        status: task.status
+    });
+});
 
 class Project extends React.Component {
     constructor(props) {
@@ -21,25 +25,26 @@ class Project extends React.Component {
             todos: []
         };
     }
+    componentDidMount() {
+        this.setState({ todos: store.todos });
+    }
     addTodo(desc, name) {
         if (empty(desc) || empty(name)) return;
 
-        data.todos.push({ 
-            id: data.id++, 
-            text: desc, 
-            name: name, 
-            status: data.status[0]
+        store.add({
+            name: name,
+            desc: desc
         });
 
-        this.setState({ todos: data.todos });
+        this.setState({ todos: store.todos });
 
         return true;
     } 
     handleMove(id, status) {
         const modified = this.state.todos.map((todo) => {
             if (todo.id === id) {
-                let statusNum = data.status.indexOf(todo.status);
-                todo.status = statusNum === 2 ? data.status[0] : data.status[statusNum + 1];
+                let statusNum = store.status.indexOf(todo.status);
+                todo.status = statusNum === 2 ? store.status[0] : store.status[statusNum + 1];
             }
 
             return todo;
@@ -52,7 +57,7 @@ class Project extends React.Component {
             if (todo.id !== id) return todo;
         });
 
-        data.todos.forEach((el, i, array) => {
+        store.todos.forEach((el, i, array) => {
             if (el.id === id) array.splice(i, 1);
         });
 

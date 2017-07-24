@@ -9,7 +9,7 @@ const ProjectItem = ({todo, move, remove}) => {
 
     return (
         <div className="project-item" onClick={moveTodo}>
-            <p className="task-desc">{todo.text}</p> 
+            <p className="task-desc">{todo.desc}</p> 
             <span className="task-name">{todo.name}</span> 
             <span className="task-remove" onClick={removeTodo}>-</span>
         </div>
