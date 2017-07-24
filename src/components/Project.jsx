@@ -32,6 +32,8 @@ class Project extends React.Component {
         });
 
         this.setState({ todos: data.todos });
+
+        return true;
     } 
     handleMove(id, status) {
         const modified = this.state.todos.map((todo) => {

@@ -4,9 +4,10 @@ const ProjectForm = ({add}) => {
     let inputDesc, inputName;
     const addTodo = e => {
         e.preventDefault();
-        add(inputDesc.value, inputName.value);
-        inputDesc.value = '';
-        inputName.value = '';
+        if (add(inputDesc.value, inputName.value)) {
+            inputDesc.value = '';
+            inputName.value = '';
+        }
     };
   
     return (
