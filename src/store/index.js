@@ -3,7 +3,7 @@ const store = {
     todos: [],
     status: ['todo', 'doing', 'done'],
     add: function(todo) {
-    	this.todos.push({ 
+        this.todos.push({ 
             id: this.generateId(), 
             desc: todo.desc, 
             name: todo.name, 
@@ -11,7 +11,7 @@ const store = {
         });
     },
     generateId: function() {
-	    return this.id++;
+        return this.id++;
     }
 };
 

@@ -22420,7 +22420,7 @@ var _Project = __webpack_require__(185);
 
 var _Project2 = _interopRequireDefault(_Project);
 
-__webpack_require__(189);
+__webpack_require__(191);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22468,6 +22468,14 @@ var _ProjectList = __webpack_require__(188);
 
 var _ProjectList2 = _interopRequireDefault(_ProjectList);
 
+var _store = __webpack_require__(189);
+
+var _store2 = _interopRequireDefault(_store);
+
+var _sample = __webpack_require__(190);
+
+var _sample2 = _interopRequireDefault(_sample);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22476,11 +22484,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var data = {
-    id: 0,
-    todos: [],
-    status: ['todo', 'doing', 'done']
-};
+_sample2.default.forEach(function (task) {
+    _store2.default.add({
+        name: task.name,
+        desc: task.desc,
+        status: task.status
+    });
+});
 
 var Project = function (_React$Component) {
     _inherits(Project, _React$Component);
@@ -22501,18 +22511,21 @@ var Project = function (_React$Component) {
     }
 
     _createClass(Project, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.setState({ todos: _store2.default.todos });
+        }
+    }, {
         key: 'addTodo',
         value: function addTodo(desc, name) {
             if (empty(desc) || empty(name)) return;
 
-            data.todos.push({
-                id: data.id++,
-                text: desc,
+            _store2.default.add({
                 name: name,
-                status: data.status[0]
+                desc: desc
             });
 
-            this.setState({ todos: data.todos });
+            this.setState({ todos: _store2.default.todos });
 
             return true;
         }
@@ -22521,8 +22534,8 @@ var Project = function (_React$Component) {
         value: function handleMove(id, status) {
             var modified = this.state.todos.map(function (todo) {
                 if (todo.id === id) {
-                    var statusNum = data.status.indexOf(todo.status);
-                    todo.status = statusNum === 2 ? data.status[0] : data.status[statusNum + 1];
+                    var statusNum = _store2.default.status.indexOf(todo.status);
+                    todo.status = statusNum === 2 ? _store2.default.status[0] : _store2.default.status[statusNum + 1];
                 }
 
                 return todo;
@@ -22537,7 +22550,7 @@ var Project = function (_React$Component) {
                 if (todo.id !== id) return todo;
             });
 
-            data.todos.forEach(function (el, i, array) {
+            _store2.default.todos.forEach(function (el, i, array) {
                 if (el.id === id) array.splice(i, 1);
             });
 
@@ -22694,7 +22707,7 @@ var ProjectItem = function ProjectItem(_ref) {
         _react2.default.createElement(
             "p",
             { className: "task-desc" },
-            todo.text
+            todo.desc
         ),
         _react2.default.createElement(
             "span",
@@ -22785,10 +22798,53 @@ exports.default = ProjectList;
 /* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var store = {
+    id: 0,
+    todos: [],
+    status: ['todo', 'doing', 'done'],
+    add: function add(todo) {
+        this.todos.push({
+            id: this.generateId(),
+            desc: todo.desc,
+            name: todo.name,
+            status: todo.status || this.status[0]
+        });
+    },
+    generateId: function generateId() {
+        return this.id++;
+    }
+};
+
+exports.default = store;
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var data = [{ "name": "Jason", "desc": "Buy milk", "status": "todo" }, { "name": "Sam", "desc": "Meeting with a client", "status": "todo" }, { "name": "Kate", "desc": "Create new project", "status": "todo" }, { "name": "Steve", "desc": "Update site", "status": "doing" }, { "name": "Sam", "desc": "Write new posts", "status": "done" }, { "name": "Jason", "desc": "Fix my phone", "status": "done" }];
+
+exports.default = data;
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(190);
+var content = __webpack_require__(192);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -22796,7 +22852,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(192)(content, options);
+var update = __webpack_require__(194)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -22813,10 +22869,10 @@ if(false) {
 }
 
 /***/ }),
-/* 190 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(191)(undefined);
+exports = module.exports = __webpack_require__(193)(undefined);
 // imports
 
 
@@ -22827,7 +22883,7 @@ exports.push([module.i, "* {\n    box-sizing: border-box;\n}\nbody {\n    font-f
 
 
 /***/ }),
-/* 191 */
+/* 193 */
 /***/ (function(module, exports) {
 
 /*
@@ -22909,7 +22965,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 192 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -22955,7 +23011,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(193);
+var	fixUrls = __webpack_require__(195);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -23268,7 +23324,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 193 */
+/* 195 */
 /***/ (function(module, exports) {
 
 
