@@ -9,8 +9,9 @@ const ProjectItem = ({todo, move, remove}) => {
 
     return (
         <div className="project-item" onClick={moveTodo}>
-            { todo.text }
-            <span className="remove" onClick={removeTodo}>-</span>
+            <p className="task-desc">{todo.text}</p> 
+            <span className="task-name">{todo.name}</span> 
+            <span className="task-remove" onClick={removeTodo}>-</span>
         </div>
     );
 }
@@ -25,16 +26,16 @@ const ProjectList = ({todos, move, remove}) => {
     return (
         <div className="project-list">
             <div className="card todo-list">
-                <h5>TODO <span>{ todoList.length }</span></h5>
-                { todoList }
+                <h5>TODO <span>{todoList.length}</span></h5>
+                {todoList}
             </div>
             <div className="card doing-list">
-                <h5>DOING <span>{ doingList.length }</span></h5>
-                { doingList }
+                <h5>DOING <span>{doingList.length}</span></h5>
+                {doingList}
             </div>
             <div className="card done-list">
-                <h5>DONE:) <span>{ doneList.length }</span></h5>
-                { doneList }
+                <h5>DONE:) <span>{doneList.length}</span></h5>
+                {doneList}
             </div>
         </div>
     );
