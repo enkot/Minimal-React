@@ -22513,6 +22513,8 @@ var Project = function (_React$Component) {
             });
 
             this.setState({ todos: data.todos });
+
+            return true;
         }
     }, {
         key: 'handleMove',
@@ -22631,9 +22633,10 @@ var ProjectForm = function ProjectForm(_ref) {
         inputName = void 0;
     var addTodo = function addTodo(e) {
         e.preventDefault();
-        add(inputDesc.value, inputName.value);
-        inputDesc.value = '';
-        inputName.value = '';
+        if (add(inputDesc.value, inputName.value)) {
+            inputDesc.value = '';
+            inputName.value = '';
+        }
     };
 
     return _react2.default.createElement(
