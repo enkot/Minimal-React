@@ -22409,7 +22409,7 @@ module.exports = ReactDOMInvalidARIAHook;
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _react = __webpack_require__(16);
@@ -22425,16 +22425,16 @@ __webpack_require__(189);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-	return _react2.default.createElement(
-		'div',
-		{ className: 'app-container' },
-		_react2.default.createElement(
-			'h1',
-			null,
-			'Trololo'
-		),
-		_react2.default.createElement(_Project2.default, null)
-	);
+    return _react2.default.createElement(
+        'div',
+        { className: 'app-container' },
+        _react2.default.createElement(
+            'h1',
+            null,
+            'Trololo'
+        ),
+        _react2.default.createElement(_Project2.default, null)
+    );
 };
 
 exports.default = App;
@@ -22447,7 +22447,7 @@ exports.default = App;
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -22477,93 +22477,93 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var data = {
-	id: 0,
-	todos: [],
-	status: ['todo', 'doing', 'done']
+    id: 0,
+    todos: [],
+    status: ['todo', 'doing', 'done']
 };
 
 var Project = function (_React$Component) {
-	_inherits(Project, _React$Component);
+    _inherits(Project, _React$Component);
 
-	function Project(props) {
-		_classCallCheck(this, Project);
+    function Project(props) {
+        _classCallCheck(this, Project);
 
-		var _this = _possibleConstructorReturn(this, (Project.__proto__ || Object.getPrototypeOf(Project)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Project.__proto__ || Object.getPrototypeOf(Project)).call(this, props));
 
-		_this.addTodo = _this.addTodo.bind(_this);
-		_this.handleMove = _this.handleMove.bind(_this);
-		_this.handleRemove = _this.handleRemove.bind(_this);
+        _this.addTodo = _this.addTodo.bind(_this);
+        _this.handleMove = _this.handleMove.bind(_this);
+        _this.handleRemove = _this.handleRemove.bind(_this);
 
-		_this.state = {
-			todos: []
-		};
-		return _this;
-	}
+        _this.state = {
+            todos: []
+        };
+        return _this;
+    }
 
-	_createClass(Project, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {
-			this.setState({
-				todos: data.todos
-			});
-		}
-	}, {
-		key: 'addTodo',
-		value: function addTodo(val) {
-			if (!val.replace(/\s/g, '').length) return;
+    _createClass(Project, [{
+        key: 'addTodo',
+        value: function addTodo(desc, name) {
+            if (empty(desc) || empty(name)) return;
 
-			data.todos.push({ id: data.id++, text: val, status: data.status[0] });
+            data.todos.push({
+                id: data.id++,
+                text: desc,
+                name: name,
+                status: data.status[0]
+            });
 
-			this.setState({
-				todos: data.todos
-			});
-		}
-	}, {
-		key: 'handleMove',
-		value: function handleMove(id, status) {
-			var modified = this.state.todos.map(function (todo) {
-				if (todo.id === id) {
-					var statusNum = data.status.indexOf(todo.status);
-					todo.status = statusNum === 2 ? data.status[0] : data.status[statusNum + 1];
-				}
+            this.setState({ todos: data.todos });
+        }
+    }, {
+        key: 'handleMove',
+        value: function handleMove(id, status) {
+            var modified = this.state.todos.map(function (todo) {
+                if (todo.id === id) {
+                    var statusNum = data.status.indexOf(todo.status);
+                    todo.status = statusNum === 2 ? data.status[0] : data.status[statusNum + 1];
+                }
 
-				return todo;
-			});
+                return todo;
+            });
 
-			this.setState({ todos: modified });
-		}
-	}, {
-		key: 'handleRemove',
-		value: function handleRemove(id) {
-			var modified = this.state.todos.filter(function (todo) {
-				if (todo.id !== id) return todo;
-			});
+            this.setState({ todos: modified });
+        }
+    }, {
+        key: 'handleRemove',
+        value: function handleRemove(id) {
+            var modified = this.state.todos.filter(function (todo) {
+                if (todo.id !== id) return todo;
+            });
 
-			data.todos.forEach(function (el, i, array) {
-				if (el.id === id) array.splice(i, 1);
-			});
+            data.todos.forEach(function (el, i, array) {
+                if (el.id === id) array.splice(i, 1);
+            });
 
-			this.setState({ todos: modified });
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(_ProjectTitle2.default, { todoCount: this.state.todos.length }),
-				_react2.default.createElement(_ProjectForm2.default, { add: this.addTodo }),
-				_react2.default.createElement(_ProjectList2.default, {
-					todos: this.state.todos,
-					move: this.handleMove,
-					remove: this.handleRemove
-				})
-			);
-		}
-	}]);
+            this.setState({ todos: modified });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_ProjectTitle2.default, { todoCount: this.state.todos.length }),
+                _react2.default.createElement(_ProjectForm2.default, { add: this.addTodo }),
+                _react2.default.createElement(_ProjectList2.default, {
+                    todos: this.state.todos,
+                    move: this.handleMove,
+                    remove: this.handleRemove
+                })
+            );
+        }
+    }]);
 
-	return Project;
+    return Project;
 }(_react2.default.Component);
+
+function empty(val) {
+    return !val.replace(/\s/g, '').length;
+}
 
 exports.default = Project;
 
@@ -22575,7 +22575,7 @@ exports.default = Project;
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _react = __webpack_require__(16);
@@ -22585,24 +22585,24 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ProjectTitle = function ProjectTitle(_ref) {
-	var todoCount = _ref.todoCount;
+    var todoCount = _ref.todoCount;
 
-	return _react2.default.createElement(
-		'div',
-		null,
-		_react2.default.createElement(
-			'h5',
-			null,
-			'There are ',
-			todoCount,
-			' tasks on boards'
-		),
-		_react2.default.createElement(
-			'p',
-			null,
-			'Type some text and press Enter. Click on task to change board'
-		)
-	);
+    return _react2.default.createElement(
+        "div",
+        { className: "project-info" },
+        _react2.default.createElement(
+            "p",
+            null,
+            "There are ",
+            todoCount,
+            " tasks on boards"
+        ),
+        _react2.default.createElement(
+            "span",
+            null,
+            "Type task description and member name. Click on task to change board"
+        )
+    );
 };
 
 exports.default = ProjectTitle;
@@ -22627,11 +22627,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ProjectForm = function ProjectForm(_ref) {
     var add = _ref.add;
 
-    var input = void 0;
+    var inputDesc = void 0,
+        inputName = void 0;
     var addTodo = function addTodo(e) {
         e.preventDefault();
-        add(input.value);
-        input.value = '';
+        add(inputDesc.value, inputName.value);
+        inputDesc.value = '';
+        inputName.value = '';
     };
 
     return _react2.default.createElement(
@@ -22640,9 +22642,13 @@ var ProjectForm = function ProjectForm(_ref) {
         _react2.default.createElement(
             'form',
             { onSubmit: addTodo },
-            _react2.default.createElement('input', { className: 'todo-form', placeholder: 'My new task...', ref: function ref(node) {
-                    return input = node;
-                } })
+            _react2.default.createElement('input', { className: 'todo-form-desc', placeholder: 'New task...', ref: function ref(node) {
+                    return inputDesc = node;
+                } }),
+            _react2.default.createElement('input', { className: 'todo-form-name', placeholder: 'Who...', ref: function ref(node) {
+                    return inputName = node;
+                } }),
+            _react2.default.createElement('input', { className: 'todo-form-submit', type: 'submit', value: 'Add' })
         )
     );
 };
@@ -22682,10 +22688,19 @@ var ProjectItem = function ProjectItem(_ref) {
     return _react2.default.createElement(
         "div",
         { className: "project-item", onClick: moveTodo },
-        todo.text,
+        _react2.default.createElement(
+            "p",
+            { className: "task-desc" },
+            todo.text
+        ),
         _react2.default.createElement(
             "span",
-            { className: "remove", onClick: removeTodo },
+            { className: "task-name" },
+            todo.name
+        ),
+        _react2.default.createElement(
+            "span",
+            { className: "task-remove", onClick: removeTodo },
             "-"
         )
     );
@@ -22803,7 +22818,7 @@ exports = module.exports = __webpack_require__(191)(undefined);
 
 
 // module
-exports.push([module.i, "* {\n\tbox-sizing: border-box;\n}\nbody {\n\tfont-family: Arial, sans-serif;\n\tcolor: #242b48;\n}\np, span {\n\tfont-size: 14px;\n}\n.app-container {\n\ttext-align: center;\n\tmargin: 100px 0;\n}\n.app-container input {\n\twidth: 100%;\n\tpadding: 10px 15px;\n\tfont-size: 16px;\n\tborder: 2px solid #eff1f5;\n\tborder-radius: 8px;\n\tmargin: 20px 0;\n\toutline: none;\n}\n.form-container {\n\tmax-width: 500px;\n\tmargin: 0 auto;\n}\n.card {\n\twidth: 31.33333%;\n\tfloat: left;\n\tmargin: 0 1%;\n\tpadding: 15px;\n\tborder-radius: 8px;\n}\n.project-item {\n\tdisplay: block;\n\tposition: relative;\n\tpadding: 20px;\n\ttext-align: left;\n\ttext-decoration: none;\n\tbackground-color: #fff;\n\tborder-radius: 8px;\n\tmargin-bottom: 10px;\n\tbox-shadow: 0 1px 2px rgba(0,0,0,.05);\n}\n.project-item:hover .remove {\n\tdisplay: block;\n}\n.project-item .remove {\n\tdisplay: none;\n\tposition: absolute;\n\theight: 16px;\n\twidth: 16px;\n\tborder-radius: 8px;\n\tright: 15px;\n\ttop: 22px;\n\tline-height: 14px;\n\ttext-align: center;\n\tcolor: #fff;\n\tcursor: pointer;\n\tbackground-color: #fd5b71;\n}\n.project-list {\n\tmax-width: 1000px;\n\tmargin: 20px auto;\n}\n.project-list h5 {\n\ttext-align: left;\n\tposition: relative;\n}\n.project-list h5 span {\n\tposition: absolute;\n\tright: 0;\n\tfont-weight: normal;\n\tcolor: rgba(0,0,0,.4);\n}\n.todo-list {\n\tbackground-color: #fbf8e7;\n}\n.doing-list {\n\tbackground-color: #fee6f3;\n}\n.done-list {\n\tbackground-color: #dff7f7;\n}", ""]);
+exports.push([module.i, "* {\n    box-sizing: border-box;\n}\nbody {\n    font-family: Arial, sans-serif;\n    color: #242b48;\n}\np {\n    font-size: 14px;\n}\nspan {\n    color: #a7a6ab;\n    font-size: 13px;\n}\n.app-container {\n    text-align: center;\n    margin: 80px 0;\n}\n.app-container input {\n    padding: 10px 15px;\n    font-size: 16px;\n    border: 2px solid #eff1f5;\n    border-radius: 8px;\n    margin: 20px 0;\n    outline: none;\n    margin-right: 5px;\n}\n.app-container .todo-form-desc {\n    width: 300px;\n}\n.app-container .todo-form-submit {\n    background-color: #58cebe;\n    color: #fff;\n    margin: 0;\n    font-size: 13px;\n    text-transform: uppercase;\n    border-color: #58cebe;\n    cursor: pointer;\n}\n.app-container .todo-form-submit:hover {\n    background-color: #48bab2;\n    border-color: #48bab2;\n}\n.card {\n    width: 31.33333%;\n    float: left;\n    margin: 0 1%;\n    padding: 15px;\n    border-radius: 8px;\n}\n.project-item {\n    display: block;\n    position: relative;\n    padding: 20px;\n    text-align: left;\n    text-decoration: none;\n    background-color: #fff;\n    border-radius: 8px;\n    margin-bottom: 10px;\n    box-shadow: 0 1px 2px rgba(0,0,0,.05);\n}\n.project-item .task-desc {\n    margin: 0;\n}\n.project-item:hover .task-remove {\n    display: block;\n}\n.project-item .task-remove {\n    display: none;\n    position: absolute;\n    height: 16px;\n    width: 16px;\n    border-radius: 8px;\n    right: 15px;\n    top: 22px;\n    line-height: 15px;\n    text-align: center;\n    color: #fff;\n    cursor: pointer;\n    background-color: #fd5b71;\n}\n.project-list {\n    max-width: 1000px;\n    margin: 20px auto;\n}\n.project-list h5 {\n    text-align: left;\n    position: relative;\n}\n.project-list h5 span {\n    position: absolute;\n    right: 0;\n    font-weight: normal;\n    color: rgba(0,0,0,.4);\n}\n.todo-list {\n    background-color: #fbf8e7;\n}\n.doing-list {\n    background-color: #fee6f3;\n}\n.done-list {\n    background-color: #dff7f7;\n}", ""]);
 
 // exports
 
