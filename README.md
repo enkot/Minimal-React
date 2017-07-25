@@ -28,4 +28,4 @@ yarn start // or 'npm start'
 ```
 Open the web browser to `http://localhost:8080/` and you will see simple project management app (like Trello cards): 
 
-![alt text](https://lh6.googleusercontent.com/JwHZQGynitMTTE7u2WVRqYem3z_6XUCCF8vHoiYU9dA993T3kVj6chWaacxb1z8rr6VBXaQkv9hCrs4=w2880-h1652-rw)
+![alt text](https://image.ibb.co/cvpAzk/Screen_Shot_2017_07_24_at_12_10_45_PM.png)
