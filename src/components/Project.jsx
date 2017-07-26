@@ -1,8 +1,8 @@
 import React from 'react';
 import ProjectTitle from './ProjectTitle.jsx';
 import ProjectForm from './ProjectForm.jsx';
-import ProjectList from './ProjectList.jsx';
-import store from './../store';
+import ProjectBoard from './board/ProjectBoard.jsx';
+import store from './store';
 
 import sample_tasks from './../../data/sample';
 sample_tasks.forEach(task => {
@@ -68,7 +68,7 @@ class Project extends React.Component {
             <div>
                 <ProjectTitle todoCount={this.state.todos.length}/>
                 <ProjectForm add={this.addTodo}/>
-                <ProjectList
+                <ProjectBoard
                     todos={this.state.todos}
                     move={this.handleMove}
                     remove={this.handleRemove}

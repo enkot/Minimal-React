@@ -41,6 +41,10 @@ span {
     background-color: #48bab2;
     border-color: #48bab2;
 }
+.project-board {
+    max-width: 1000px;
+    margin: 20px auto;
+}
 .card {
     width: 31.33333%;
     float: left;
@@ -48,7 +52,26 @@ span {
     padding: 15px;
     border-radius: 8px;
 }
-.project-item {
+.card h5 {
+    text-align: left;
+    position: relative;
+}
+.card h5 span {
+    position: absolute;
+    right: 0;
+    font-weight: normal;
+    color: rgba(0,0,0,.4);
+}
+.todo-card {
+    background-color: #fbf8e7;
+}
+.doing-card {
+    background-color: #fee6f3;
+}
+.done-card {
+    background-color: #dff7f7;
+}
+.project-task {
     display: block;
     position: relative;
     padding: 20px;
@@ -59,13 +82,13 @@ span {
     margin-bottom: 10px;
     box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
-.project-item .task-desc {
+.project-task .task-desc {
     margin: 0;
 }
-.project-item:hover .task-remove {
+.project-task:hover .task-remove {
     display: block;
 }
-.project-item .task-remove {
+.project-task .task-remove {
     display: none;
     position: absolute;
     height: 16px;
@@ -78,27 +101,4 @@ span {
     color: #fff;
     cursor: pointer;
     background-color: #fd5b71;
-}
-.project-list {
-    max-width: 1000px;
-    margin: 20px auto;
-}
-.project-list h5 {
-    text-align: left;
-    position: relative;
-}
-.project-list h5 span {
-    position: absolute;
-    right: 0;
-    font-weight: normal;
-    color: rgba(0,0,0,.4);
-}
-.todo-list {
-    background-color: #fbf8e7;
-}
-.doing-list {
-    background-color: #fee6f3;
-}
-.done-list {
-    background-color: #dff7f7;
 }
