@@ -11,6 +11,8 @@ It has bare minimum to start development:
 Example (from 'docs' directory): 
 https://batenkovt.github.io/Minimal-React/
 
+Read article on [Medium](https://codeburst.io/its-easy-setting-up-react-and-webpack-eb9ecaef5094).
+
 ## Installation
 Clone from repository:
 ```
