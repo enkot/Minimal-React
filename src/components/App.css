@@ -4,6 +4,8 @@
 body {
     font-family: Arial, sans-serif;
     color: #242b48;
+    text-align: center;
+    padding: 80px 0;
 }
 p {
     font-size: 14px;
@@ -12,11 +14,7 @@ span {
     color: #a7a6ab;
     font-size: 13px;
 }
-.app-container {
-    text-align: center;
-    margin: 80px 0;
-}
-.app-container input {
+input {
     padding: 10px 15px;
     font-size: 16px;
     border: 2px solid #eff1f5;
@@ -25,10 +23,10 @@ span {
     outline: none;
     margin-right: 5px;
 }
-.app-container .todo-form-desc {
+.todo-form-desc {
     width: 300px;
 }
-.app-container .todo-form-submit {
+.todo-form-submit {
     background-color: #58cebe;
     color: #fff;
     margin: 0;
@@ -37,7 +35,7 @@ span {
     border-color: #58cebe;
     cursor: pointer;
 }
-.app-container .todo-form-submit:hover {
+.todo-form-submit:hover {
     background-color: #48bab2;
     border-color: #48bab2;
 }
@@ -63,7 +61,7 @@ span {
     color: rgba(0,0,0,.4);
 }
 .todo-card {
-    background-color: #fbf8e7;
+    background-color: #f5f5f5;
 }
 .doing-card {
     background-color: #fee6f3;
