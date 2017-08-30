@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Title = ({ taskCount }) => (
+const Title = ({ cardsCount }) => (
     <div className="project-info">
         <h1>Trololo Board</h1>
-        <p>There are {taskCount} tasks on boards</p>
-        <span>Type task description and member name. Click on task to move to another board.</span>
+        <p>There are {cardsCount} tasks on board</p>
+        <span>Type task text and executor name. Click on card to move to another list.</span>
     </div>
 );
 
 const mapStateToProps = (state) => {
     return { 
-        taskCount: state.length
+        cardsCount: state.length
     };
 };
 

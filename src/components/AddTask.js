@@ -23,9 +23,9 @@ const AddTask = ({ dispatch, state }) => {
     return (
         <div className="form-container">
             <form onSubmit={submitTask}>
-                <input className="todo-form-desc" placeholder="New task..." ref={node => inputText = node} />
-                <input className="todo-form-name" placeholder="Who..." ref={node => inputExecutor = node} />
-                <input className="todo-form-submit" type="submit" value="Add"/>
+                <input className="task-form-text" placeholder="New task..." ref={node => inputText = node} />
+                <input className="task-form-executor" placeholder="Who..." ref={node => inputExecutor = node} />
+                <input className="task-form-submit" type="submit" value="Add"/>
             </form>
         </div>
     );
