@@ -1,5 +1,5 @@
 # Minimal-React
-Minimal React.js starter kit for experiments.
+Minimal React + Redux starter kit for experiments.
 
 [![Build Status](https://travis-ci.org/BatenkovT/Minimal-React.svg?branch=master)](https://travis-ci.org/BatenkovT/Minimal-React)
 
@@ -31,4 +31,4 @@ $ yarn start // or 'npm start'
 ```
 Open the web browser to `http://localhost:8080/` and you will see simple project management app (like Trello board): 
 
-![alt text](https://image.ibb.co/iWMJkQ/Screen_Shot_2017_07_24_at_12_37_24_PM.png)
+![alt text](https://image.ibb.co/jrPv6k/Screen_Shot_2017_08_30_at_3_57_29_PM.png)
