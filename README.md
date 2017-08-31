@@ -10,14 +10,14 @@ It has bare minimum to start development:
 * Babel and css loaders
 
 Example (from 'docs' directory): 
-https://batenkovt.github.io/Minimal-React/
+https://enkot.github.io/Minimal-React/
 
 Read article on [Medium](https://codeburst.io/its-easy-setting-up-react-and-webpack-eb9ecaef5094).
 
 ## Installation
 Clone from repository:
 ```
-$ git clone https://github.com/BatenkovT/Minimal-React.git
+$ git clone https://github.com/enkot/Minimal-React.git
 ```
 Install dependencies:
 ```js
