@@ -1,7 +1,7 @@
 # Minimal-React
 Minimal React + Redux starter kit for experiments.
 
-[![Build Status](https://travis-ci.org/BatenkovT/Minimal-React.svg?branch=master)](https://travis-ci.org/enkot/Minimal-React)
+[![Build Status](https://travis-ci.org/enkot/Minimal-React.svg?branch=master)](https://travis-ci.org/enkot/Minimal-React)
 
 It has bare minimum to start development:
 * React
